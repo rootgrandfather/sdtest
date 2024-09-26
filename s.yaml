@@ -28,7 +28,7 @@ services:
         description: sdtest函数
         handler: index.handler
         timeout: 600
-        diskSize: 1024
+        diskSize: 10240
         caPort: 9999
         instanceType: fc.gpu.tesla.1
         runtime: custom-container
