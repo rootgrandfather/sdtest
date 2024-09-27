@@ -66,3 +66,57 @@ services:
           protocol: HTTP
           routeConfigs:
             - path: /*
+
+  filemgr:
+    component: fc 
+    actions: 
+      pre-deploy:
+         - run: |
+            cd src/code && \
+            curl http://serverless-tool-images.oss-cn-hangzhou.aliyuncs.com/aigc/filemgr/${vars.filemgrFilename}.zip -o filemgr.zip && \
+            unzip filemgr.zip && \
+            mv dist/ filemgr/
+           path: ./
+    props:
+      region: ${vars.region}
+      service: ${vars.service}
+      function:
+        name: "admin"
+        description: '模型管理辅助工具'
+        codeUri: './src/code/filemgr'
+        runtime: custom
+        timeout: 7200
+        memorySize: 3072
+        cpu: 2.0
+        diskSize: 512
+        instanceConcurrency: 16
+        caPort: 9000
+        customRuntimeConfig:
+          command:
+            - ./server
+        environmentVariables:
+          TOKEN: ${vars.filemgrToken}
+          ENABLE_COLLECT: ${vars.enableCollect}
+          SD_VERSION: ""
+          SD_FUNCTION_NAME: "sdtest"
+          SD_DOMAIN: ""
+        layers:
+          - "acs:fc:${vars.region}:official:layers/ServerlessDevs/versions/1"
+          - "acs:fc:${vars.region}:official:layers/Python310/versions/2"
+      triggers:
+        - name: httpTrigger
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /*
