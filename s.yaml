@@ -72,7 +72,7 @@ services:
     actions: 
       pre-deploy:
          - run: |
-            cd src/code && \
+            mkdir -p src/code && cd src/code && \
             curl http://serverless-tool-images.oss-cn-hangzhou.aliyuncs.com/aigc/filemgr/${vars.filemgrFilename}.zip -o filemgr.zip && \
             unzip filemgr.zip && \
             mv dist/ filemgr/
