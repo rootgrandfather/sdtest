@@ -30,7 +30,7 @@ services:
         handler: index.handler
         timeout: 600
         diskSize: 10240
-        caPort: 36000
+        caPort: 9999
         instanceType: fc.gpu.tesla.1
         runtime: custom-container
         cpu: 8
