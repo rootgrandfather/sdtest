@@ -7,7 +7,7 @@ vars:
   functionName: "sdtest" 
   filemgrFilename: "filemgr-1.2.2"
   # imageUrl: "registry.cn-hangzhou.aliyuncs.com/aliyun-fc/fc-stable-diffusion:anime-v12" 
-  imageUrl: "registry.cn-hangzhou.aliyuncs.com/pdkpdk/sdcpprelease:1"
+  imageUrl: "registry.cn-hangzhou.aliyuncs.com/pdkpdk/sdcppdeploy:1"
   enableCollect: ""
   service:
     name: "serverless-sdtest"
