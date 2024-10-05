@@ -43,7 +43,7 @@ services:
           command: ''
           webServerMode: true
         instanceConcurrency: 100
-        memorySize: 65536
+        memorySize: 32768
         gpuMemorySize: 16384
         asyncConfiguration: {}
         environmentVariables:
